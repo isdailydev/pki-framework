@@ -514,7 +514,7 @@ final class Real extends Element implements Stringable
     {
         $n = BigInteger::fromBytes($octets, false);
         // sign bit
-        $neg = $n->testBit(63);
+        $neg = $n->isBitSet(63);
         // 11 bits of biased exponent
         $exponentMask = BigInteger::fromBase('7ff0000000000000', 16);
         $exp = $n->and($exponentMask)
@@ -539,7 +539,7 @@ final class Real extends Element implements Stringable
 
         // find the last fraction bit that is set
         $last = 0;
-        while (! $man->testBit($last) && $last !== 52) {
+        while (! $man->isBitSet($last) && $last !== 52) {
             $last++;
         }
 
